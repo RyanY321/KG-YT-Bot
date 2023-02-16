@@ -3,7 +3,7 @@ require("http").createServer((_, res) => res.end("Uptime!")).listen(8080)
 const aoijs = require("aoi.js");
 
 const bot = new aoijs.AoiClient({
-token: "process.env.TOKEN",
+token: "process.env.Token",
 prefix: "~",
 intents: ["MessageContent", "Guilds", "GuildMessages", "GuildVoiceStates"]
 });
