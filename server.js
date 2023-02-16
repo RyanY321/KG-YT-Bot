@@ -1,7 +1,23 @@
-const app = require('express')();
+require("http").createServer((_, res) => res.end("Uptime!")).listen(8080)
 
-app.get('/', (req, res) => res.send(`Server is up.`));
+const aoijs = require("aoi.js");
 
-module.exports = () => {
-  app.listen(3000);
-}
+const bot = new aoijs.AoiClient({
+token: "process.env.TOKEN",
+prefix: "~",
+intents: ["MessageContent", "Guilds", "GuildMessages", "GuildVoiceStates"]
+});
+
+bot.status({
+    text: "Prefix: ~ | Almost Finished",
+    type: "ONLINE",
+    status: "online",
+    time: 12
+  });
+
+//Events
+bot.onMessage();
+bot.onInteractionCreate();
+
+const loader = new aoijs.LoadCommands(bot)
+loader.load(bot.cmd,"./commands/")
